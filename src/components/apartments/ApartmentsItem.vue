@@ -7,7 +7,7 @@
         <StarRating :rating="rating" />
         <div class="apartments-item__price">UAH {{price}}</div>
       </div>
-      <img :src="`../../assets${imgSrc}`" alt="" class="apartments-item__photo">
+      <img :src="imgSrc" alt="" class="apartments-item__photo">
     </div>
   </div>
 </template>
