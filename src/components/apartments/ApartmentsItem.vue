@@ -7,7 +7,7 @@
         <StarRating :rating="rating" />
         <div class="apartments-item__price">UAH {{price}}</div>
       </div>
-      <img :src="`/vuejs-apartments${imgSrc}`" alt="" class="apartments-item__photo">
+      <img :src="getImgUrl(imgSrc)" alt="" class="apartments-item__photo">
     </div>
   </div>
 </template>
@@ -37,6 +37,11 @@ import StarRating from '../StarRating.vue';
         type: String,
         default: '',
       },
+    },
+    methods: {
+      getImgUrl(pic) {
+        return require(`../../assets${pic}`);
+      }
     },    
   }
 </script>
