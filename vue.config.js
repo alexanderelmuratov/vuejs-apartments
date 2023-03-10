@@ -7,6 +7,12 @@
 //   //   : '/'
 // })
 
+// module.exports = {
+//   publicPath: '/vuejs-apartments/',
+// }
+
 module.exports = {
-  publicPath: '/vuejs-apartments/',
+  publicPath: process.env.NODE_ENV === 'production'
+    ? '/vuejs-apartments/'
+    : '/'
 }
