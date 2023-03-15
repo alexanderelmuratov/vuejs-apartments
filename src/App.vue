@@ -1,39 +1,44 @@
 <template>
-  <ApartmentsList :items="apartments" />
+  <PageContainer>
+    <ApartmentsFilterForm @submit="logger" />
+    <ApartmentsList :items="apartments">
+      <template v-slot:apartment="{ apartment }">
+        <ApartmentsItem
+          :key="apartment.id"
+          :desc="apartment.descr"
+          :rating="apartment.rating"
+          :imgSrc="apartment.imgUrl"
+          :price="apartment.price"
+        />
+      </template>
+    </ApartmentsList>
+  </PageContainer>
 </template>
 
 <script>
-import ApartmentsList from './components/apartments/ApartmentsList.vue'
-import apartments from './components/apartments/apartments'
+import ApartmentsFilterForm from './components/apartments/ApartmentsFilterForm.vue';
+import ApartmentsList from './components/apartments/ApartmentsList.vue';
+import ApartmentsItem from './components/apartments/ApartmentsItem.vue';
+import apartments from './components/apartments/apartments';
 
 export default {
   name: 'App',
   components: {
+    ApartmentsFilterForm,
     ApartmentsList,
+    ApartmentsItem,
   },
   data() {
     return {
       apartments,
-      apartment: {
-        id: '5f689a2c09b16000e9a2f47b',
-        title: 'Delectus et iste.',
-        imgUrl: '/img/apartments/apartment-1.jpg',
-        descr:
-        'Debitis similique unde et eligendi sapiente in iure blanditiis distinctio. Cum nihil temporibus qui quam aut. Nesciunt qui eveniet eum quam voluptate numquam.',
-        rating: 3.5,
-        price: 1667,
-        location: {
-          city: 'Dnipro',
-        },
-        owner: {
-          name: 'Bobbi',
-          phone: '582-740-2926',
-          email: 'Pete_Carter53@hotmail.com',
-        },
-      }
-    }
+    };
   },
-}
+  methods: {
+    logger(value) {
+      console.log(value, 'form value');
+    },
+  },
+};
 </script>
 
 <style>
@@ -41,8 +46,7 @@ export default {
   font-family: Montserrat, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+  /* text-align: center; */
   color: #2c3e50;
-  margin-top: 60px;
 }
 </style>

@@ -1,35 +1,22 @@
 <template>
-  <PageContainer>
-    <div class="apartments-list">
-      <ApartmentsItem 
-        v-for="{id, descr, rating, imgUrl, price} in items"
-        :key="id"
-        :desc="descr"
-        :rating="rating"
-        :imgSrc="imgUrl"
-        :price="price"
-      />
-    </div>
-  </PageContainer>  
+  <slot name="title">Подборка согласно выбора</slot>
+  <div class="apartments-list">
+    <template v-for="apartment in items">
+      <slot name="apartment" v-bind:apartment="apartment"></slot>
+    </template>
+  </div>
 </template>
 
 <script>
-import PageContainer from '../shared/PageContainer.vue'
-import ApartmentsItem from './ApartmentsItem.vue'
-
-  export default {
-    name: 'ApartmentsList',
-    components: {
-      PageContainer,
-      ApartmentsItem,
+export default {
+  name: 'ApartmentsList',
+  props: {
+    items: {
+      type: Array,
+      default: () => [],
     },
-    props: {
-      items: {
-        type: Array,
-        default: () => [],
-      }
-    }
-  }
+  },
+};
 </script>
 
 <style lang="scss" scoped>
