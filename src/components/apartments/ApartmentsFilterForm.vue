@@ -50,7 +50,8 @@ export default {
 <style lang="scss" scoped>
 .apartments-filter-form {
   display: flex;
-  padding-top: 60px;
+  /* width: 100%; */
+  /* padding-top: 60px; */
   padding-bottom: 40px;
 
   &__select {

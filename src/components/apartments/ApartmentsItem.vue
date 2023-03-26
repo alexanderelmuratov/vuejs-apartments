@@ -1,49 +1,47 @@
 <template>
-  <div class="apartments-item">
+  <div class="apartments-item" @click="$router.push(`/apartment/${id}`)">
     <div class="apartments-item__inner">
-      
       <div class="apartments-item__content">
-        <p class="apartments-item__description">{{desc}}</p>
+        <p class="apartments-item__description">{{ desc }}</p>
         <StarRating :rating="rating" />
-        <div class="apartments-item__price">UAH {{price}}</div>
+        <div class="apartments-item__price">UAH {{ price }}</div>
       </div>
-      <img :src="getImgUrl(imgSrc)" alt="" class="apartments-item__photo">
+      <img :src="getImgUrl(imgSrc)" alt="" class="apartments-item__photo" />
+      <!-- <router-link to="/apartment" class="apartments-item__link"></router-link> -->
     </div>
   </div>
 </template>
 
 <script>
-import StarRating from '../StarRating.vue';
-
-  export default {
-    name: 'ApartmentsItem',
-    components: {
-      StarRating,
+export default {
+  name: 'ApartmentsItem',
+  props: {
+    id: {
+      type: String,
     },
-    props: {
-      desc: {
-        type: String,
-        default: '',
-      },
-      rating: {
-        type: Number,
-        default: 0,
-      },
-      price: {
-        type: Number,
-        required: true,
-      },
-      imgSrc: {
-        type: String,
-        default: '',
-      },
+    desc: {
+      type: String,
+      default: '',
     },
-    methods: {
-      getImgUrl(pic) {
-        return require(`../../assets${pic}`);
-      }
-    },    
-  }
+    rating: {
+      type: Number,
+      default: 0,
+    },
+    price: {
+      type: Number,
+      required: true,
+    },
+    imgSrc: {
+      type: String,
+      default: '',
+    },
+  },
+  methods: {
+    getImgUrl(pic) {
+      return require(`../../assets${pic}`);
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>

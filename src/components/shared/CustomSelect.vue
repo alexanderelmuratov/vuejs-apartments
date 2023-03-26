@@ -21,7 +21,7 @@ export default {
     },
     options: {
       type: Array,
-      requared: true,
+      required: true,
     },
   },
   computed: {
